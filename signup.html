@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <script src="https://kit.fontawesome.com/306dc58f93.js" crossorigin="anonymous"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;1,100&family=Roboto:wght@300&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+        font-family:'Roboto', sans-serif;
+        box-sizing: border-box;
+    }
+
+    .container{
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(grey,yellow),url(monday-dashboard.jpg);
+        background-position: center;
+        background-size:cover;
+        position: relative;
+    }
+    .formbook{
+        width: 90%;
+        max-width: 800px;
+        position: absolute;
+        top: 50px;
+        left: 50%;
+        transform: translate(-50%,5%);
+        background: #fff;
+        padding: 50px 60px 70px;
+        text-align: center;
+    }
+    .formbook h1{
+        font-size: 40px;
+        font-weight: 900;
+        margin-bottom: 60px;
+        color: #3c00a0;
+        position: relative;
+    }
+    .formbook h1::after{
+        content: '';
+        width: 500px;
+        height: 4px;
+        background: #3c00a0;
+        position: absolute;
+        bottom:0;
+        left: 50%;
+        transform: translate(-50%);
+    }
+    .formbook p{
+        font-size: 20px;
+        font-weight: 500;
+    }
+    .input_field {
+        background-color: #eaeaea;
+        margin: 15px 0;
+        border-radius:3px ;
+        display: flex;
+        align-items: center;
+        max-height: 65px;
+        transition:max-height 0.5s;
+        overflow: hidden;
+    }
+    input{
+        width: 100%;
+        background: transparent;
+        border: 0;
+        outline: 0;
+        padding: 18px 15px;
+    }
+    .input_field i{
+        margin-left: 15px;
+        color: #999;
+
+    }
+    form p{
+        font-size: 20px;
+        font-weight: 600;
+        text-align: center;
+    }
+    form p a{
+        text-decoration: none;
+    }
+    .btn-field{
+        width: 100%;
+        text-align: right;
+        
+    }
+    .btn-field button{
+        flex-basis: 50%;
+        background: #3c00a0;
+        color: #fff;
+        height: 40px;
+        border-radius: 2px;
+        width: 70px;
+        border: 0;
+        outline: 0;
+        cursor: pointer;
+        transition: background 1s;
+
+    }
+    .navbar{
+        display: flex;
+        height: 70px;
+        background-color: white;
+        color: black;
+        justify-content: space-between;
+        padding: 0px 30px 0px 30px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+    .navbar a{
+        text-decoration: none;
+        font-size: 30px;
+        font-weight: 800;
+        margin-top:40px ;
+        color: black;
+    }
+    .navbar .left{
+        margin-top: 13px;
+    }
+.inputgrp{
+    height: 300px;
+}
+</style>
+<body>
+    <nav class="navbar">
+        <div class="left">
+            <a href="index.html">Travel-Through</a>
+    </div>
+    </nav>
+    <div class="container">
+        <div class="formbook">
+            <h1 id="title"><b>Set up your account</b></h1>
+            <p>Fill up your details</p>
+            <form>
+                <div class="inputgrp">
+                    <div class="input_field" id="namefield">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" placeholder="FullName" id="name">
+                    </div>
+                    <div class="input_field">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="email" placeholder="Enteremail" id="email">
+                    </div>
+                    <div class="input_field" >
+                        <i class="fa-solid fa-key"></i>
+                        <input type="password" placeholder=" CreatePassword" id="pass">
+                    </div>
+                    <div class="input_field">
+                        <i class="fa-solid fa-file-signature"></i>
+                        <input type="text" placeholder="AccountName" id="accname">
+                    </div>
+                    <p>I agree to <a href="#">Terms of servieces</a> and <a href="#">Privacy policy</a></p>
+                </div>
+                <div class="btn-field">
+                    <button>Continue</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    let userDetails=[]
+    let myform = document.querySelector("form")
+    let name = document.getElementById("name")
+    let email = document.getElementById("email")
+    let password = document.getElementById("pass")
+    let accountname = document.getElementById("accname")
+    myform.addEventListener("submit",function(e){
+        e.preventDefault()
+        let formdata = {
+            name: myform.name.value,
+            email:myform.email.value,
+            password:myform.pass.value,
+            accountname:myform.accname.value
+        }
+        if(formdata.name == "" || formdata.email == "" || formdata.password == ""|| formdata.accountname == ""){
+            alert("Please Fill Given Details!" , " " , "error")
+        }
+        else{
+            userDetails.push(formdata)
+            localStorage.setItem("userdata",JSON.stringify(userDetails))
+            alert("Signup Succssesfull","Welcome to Developer's Management","success")
+
+            setTimeout(()=>{
+                window.location.href="index.html"
+            },2000)
+        }
+    })
+</script>
+</html>
